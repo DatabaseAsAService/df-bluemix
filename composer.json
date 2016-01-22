@@ -1,0 +1,105 @@
+{
+  "name":              "dreamfactory/dreamfactory",
+  "description":       "The DreamFactory(tm) Platform.",
+  "keywords":          [
+    "api",
+    "dreamfactory",
+    "dsp",
+    "rest"
+  ],
+  "homepage":          "https://www.dreamfactory.com/",
+  "license":           "Apache-2.0",
+  "authors":           [
+    {
+      "name":  "Arif Islam",
+      "email": "arifislam@dreamfactory.com"
+    },
+    {
+      "name":  "David Weiner",
+      "email": "davidweiner@dreamfactory.com"
+    },
+    {
+      "name":  "Jerry Ablan",
+      "email": "jerryablan@dreamfactory.com"
+    },
+    {
+      "name":  "Lee Hicks",
+      "email": "leehicks@dreamfactory.com"
+    }
+  ],
+  "support":           {
+    "email":  "support@dreamfactory.com",
+    "source": "https://github.com/dreamfactorysoftware/dreamfactory",
+    "issues": "https://github.com/dreamfactorysoftware/dreamfactory/issues",
+    "wiki":   "https://wiki.dreamfactory.com"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable":     true,
+  "require":           {
+    "laravel/framework":          "5.1.*",
+    "tymon/jwt-auth":             "0.5.*",
+    "dreamfactory/df-managed":    "dev-feature/bluemix_debug as dev-master",
+    "dreamfactory/df-admin-app":  "dev-develop as dev-master",
+    "dreamfactory/df-core":       "dev-develop as dev-master",
+    "dreamfactory/df-aws":        "dev-develop as dev-master",
+    "dreamfactory/df-rackspace":  "dev-develop as dev-master",
+    "dreamfactory/df-sqldb":      "dev-develop as dev-master",
+    "dreamfactory/df-mongodb":    "dev-develop as dev-master",
+    "dreamfactory/df-couchdb":    "dev-develop as dev-master",
+    "dreamfactory/df-rws":        "dev-develop as dev-master",
+    "dreamfactory/df-salesforce": "dev-develop as dev-master",
+    "dreamfactory/df-soap":       "dev-develop as dev-master",
+    "dreamfactory/df-user":       "dev-develop as dev-master",
+    "dreamfactory/df-oauth":      "dev-develop as dev-master",
+    "dreamfactory/df-adldap":     "dev-develop as dev-master"
+  },
+  "require-dev":       {
+    "barryvdh/laravel-ide-helper": "~2.0",
+    "laracasts/generators":        "~1.0",
+    "laracasts/testdummy":         "~2.0",
+    "phpunit/phpunit":             "~4.0",
+    "phpspec/phpspec":             "~2.1",
+    "laravel/homestead": "dev-master"
+  },
+  "autoload":          {
+    "classmap": [
+      "htdocs/database"
+    ],
+    "psr-4":    {
+      "DreamFactory\\": "htdocs/app/"
+    }
+  },
+  "autoload-dev":      {
+    "classmap": [
+      "tests/TestCase.php"
+    ]
+  },
+  "scripts":           {
+    "pre-install-cmd":  [
+      "rm -rf htdocs/bootstrap/cache/*.php"
+    ],
+    "post-install-cmd": [
+      "echo \"\npath is $PWD\nls is\n$(ls -al)\"",
+      "cp .env-dist htdocs/.env",
+      "php htdocs/artisan clear-compiled",
+      "php htdocs/artisan optimize",
+      "php htdocs/artisan dreamfactory:pull-migrations",
+      "php htdocs/artisan key:generate",
+      "php htdocs/artisan migrate --force",
+      "php htdocs/artisan db:seed --force"
+    ]
+  },
+  "config":            {
+    "preferred-install": "source"
+  },
+  "extra":             {
+    "branch-alias":    {
+      "dev-develop": "2.0.x-dev"
+    },
+    "installer-paths": {
+      "htdocs/public/{$name}/": [
+        "type:dreamfactory-app"
+      ]
+    }
+  }
+}
