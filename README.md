@@ -113,7 +113,7 @@ applications:
  #0   running   2016-01-22 02:08:45 PM   0.0%   150.5M of 1G   438M of 1G
 ```
 
-> _Note: If you use a MySQL service from the Bluemix catalog, you will need to determine the service key that is used in the JSON
+> Note: If you use a MySQL service from the Bluemix catalog, you will need to determine the service key that is used in the JSON
 > array in the VCAP_SERVICES environment variable.  Unfortanetly, you typically can not determine this until _after_ the application
 > is running on Bluemix.  Once you have this, you will need to update the __BM_DB_SERVICE_KEY__ entry in the .env file.  The default
 > setting, _user-provided_ is for any service created using _cf cups_.  The free ClearDB service uses _cleardb_.
