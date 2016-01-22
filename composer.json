@@ -1,11 +1,12 @@
 {
-  "name":              "dreamfactory/dreamfactory",
-  "description":       "The DreamFactory(tm) Platform.",
+  "name":              "dreamfactory/df-bluemix",
+  "description":       "The DreamFactory(tm) Platform 2.0 on Bluemix.",
   "keywords":          [
     "api",
     "dreamfactory",
     "dsp",
-    "rest"
+    "rest",
+    "bluemix"
   ],
   "homepage":          "https://www.dreamfactory.com/",
   "license":           "Apache-2.0",
@@ -29,8 +30,8 @@
   ],
   "support":           {
     "email":  "support@dreamfactory.com",
-    "source": "https://github.com/dreamfactorysoftware/dreamfactory",
-    "issues": "https://github.com/dreamfactorysoftware/dreamfactory/issues",
+    "source": "https://github.com/dreamfactorysoftware/df-bluemix",
+    "issues": "https://github.com/dreamfactorysoftware/df-bluemix/issues",
     "wiki":   "https://wiki.dreamfactory.com"
   },
   "minimum-stability": "dev",
@@ -38,7 +39,7 @@
   "require":           {
     "laravel/framework":          "5.1.*",
     "tymon/jwt-auth":             "0.5.*",
-    "dreamfactory/df-managed":    "dev-feature/bluemix_debug as dev-master",
+    "dreamfactory/df-managed":    "dev-develop as dev-master",
     "dreamfactory/df-admin-app":  "dev-develop as dev-master",
     "dreamfactory/df-core":       "dev-develop as dev-master",
     "dreamfactory/df-aws":        "dev-develop as dev-master",
@@ -80,7 +81,7 @@
     ],
     "post-install-cmd": [
       "echo \"\npath is $PWD\nls is\n$(ls -al)\"",
-      "cp .env-dist htdocs/.env",
+      "cp .env htdocs/.env",
       "php htdocs/artisan clear-compiled",
       "php htdocs/artisan optimize",
       "php htdocs/artisan dreamfactory:pull-migrations",

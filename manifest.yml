@@ -1,6 +1,6 @@
 ---
 applications:
-- name: df2
+- name: ##appname##
   memory: 1024M
   buildpack: https://github.com/cloudfoundry/php-buildpack
   env:
@@ -8,4 +8,4 @@ applications:
     CF_STARTUP_TIMEOUT: 15
     BP_DEBUG: "True"
   services:
-   - df2-cleardb
+   - ##appname##-db
