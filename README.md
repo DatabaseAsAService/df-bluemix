@@ -2,7 +2,6 @@
 
 [![License](https://poser.pugx.org/dreamfactory/dreamfactory/license.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/dreamfactorysoftware/dreamfactory?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy)
 
 ## Overview
 
@@ -34,6 +33,7 @@ DreamFactory 2.0 on Bluemix currently supports the following databases:
 * MySQL and other MySQL compatible database/database services such as ClearDB
 * MongoDB
 * Postgres
+
 > _Note: Only MySQL is supported for the system database on Bluemix._
 
 ## Quick Setup
@@ -79,18 +79,27 @@ The commands shown here are primarily for a Linux based OS, but this should also
 >
 > Note: During testing, it was determined that the free ClearDB service available from the Bluemix catalog does not allow sufficient
 > concurrent connections to properly operate DreamFactory 2.0.  It is recommended that you use an external provider such as ClearDB or
-> Amazon RDS directly or run your own MySQL server.  DreamFactory 2.0 on Bluemix has not been tested using the experimental Bluemix
-> MySQL service at this time.
+> Amazon RDS directly or run your own MySQL server.  To use the experimental Bluemix MySQL server, create the service with the
+> following command:
+>
+> cf create-service mysql 100 appname-db
+>
+> You will also have to edit the .env file and change the following line
+> BM_DB_SERVICE_KEY=user-provided
+>
+> to
+> BM_DB_SERVICE_KEY=mysql-5.5
+>
+> __Note: The experimental MySQL service form Bluemix is just that -- experimental.  Bluemix could introduce breaking changes at any time, and it is not recomended for production use.  In testing, the experimental MySQL service exhibited many of the same problems as the free ClearDB service.  The use of the experimental MySQL service is not recommended or supported.__
 
 * Edit manifest.yml and replace all instances of ##appname## with your application name and save the file
 
-> _Example manifest.yml after editing_
+> _Example manifest.yml after editing, using an appname of df2_
 
 ```
 ---
 applications:
-- name: df2
-  memory: 1024M
+- memory: 1024M
   buildpack: https://github.com/cloudfoundry/php-buildpack
   env:
     CF_STAGING_TIMEOUT: 15
@@ -112,8 +121,3 @@ applications:
       state     since                    cpu    memory         disk         details
  #0   running   2016-01-22 02:08:45 PM   0.0%   150.5M of 1G   438M of 1G
 ```
-
-> Note: If you use a MySQL service from the Bluemix catalog, you will need to determine the service key that is used in the JSON
-> array in the VCAP_SERVICES environment variable.  Unfortanetly, you typically can not determine this until _after_ the application
-> is running on Bluemix.  Once you have this, you will need to update the __BM_DB_SERVICE_KEY__ entry in the .env file.  The default
-> setting, _user-provided_ is for any service created using _cf cups_.  The free ClearDB service uses _cleardb_.
