@@ -2,6 +2,7 @@
 
 [![License](https://poser.pugx.org/dreamfactory/dreamfactory/license.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/dreamfactorysoftware/dreamfactory?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy)
 
 ## Overview
 
@@ -33,7 +34,6 @@ DreamFactory 2.0 on Bluemix currently supports the following databases:
 * MySQL and other MySQL compatible database/database services such as ClearDB
 * MongoDB
 * Postgres
-
 > _Note: Only MySQL is supported for the system database on Bluemix._
 
 ## Quick Setup
@@ -98,7 +98,7 @@ applications:
     BP_DEBUG: "True"
   services:
    - df2-db
-   ```
+```
    
 * Deploy DreamFactory 2.0 to Bluemix
 

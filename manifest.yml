@@ -1,6 +1,10 @@
 ---
+declared-services:
+  df2-mysql:
+    label: mysql
+    plan: 100
 applications:
-- name: ##appname##
+- name: df2
   memory: 1024M
   buildpack: https://github.com/cloudfoundry/php-buildpack
   env:
@@ -8,4 +12,4 @@ applications:
     CF_STARTUP_TIMEOUT: 15
     BP_DEBUG: "True"
   services:
-   - ##appname##-db
+   - df2-mysql
