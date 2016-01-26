@@ -57,7 +57,7 @@ The commands shown here are primarily for a Linux based OS, but this should also
 
 * Clone the DreamFactory 2.0 repository into a directory named htdocs
 
-> git clone https://github.com/dreamfactorysoftware/dreamfactory.gif htdocs
+> git clone https://github.com/dreamfactorysoftware/dreamfactory.git htdocs
 
 * Connect to Bluemix
 
